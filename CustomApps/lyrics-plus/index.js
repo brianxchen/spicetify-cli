@@ -409,16 +409,6 @@ class LyricsContainer extends react.Component {
 				lyricContainerUpdate && lyricContainerUpdate();
 			});
 		});
-
-		(function (){
-
-			var bookmarkletCode = "(function(a,b,c,d,e,f,g)%7Bd=document;f='mandarinspot';g=window;if(!!d.getElementById(f+'-tip'))%7Bg%5Bf%5D.run();return%7Dg%5Bf%5D=%7Bphonetic:a,inline:b,bookmark:1,api:1%7D;e=d.head%7C%7Cd.body;c=d.createElement('script');c.type='text/javascript';c.src='//'+f+'.com/static/'+f+'.min.js';c.charset='UTF-8';e.appendChild(c)%7D)('pinyin')";
-			bookmarkletCode = bookmarkletCode.replace(/ /g,'');
-		
-			var scriptElement = document.createElement('script');
-			scriptElement.innerHTML = decodeURIComponent(bookmarkletCode);
-			document.body.appendChild(scriptElement);
-		})();
 	}
 
 	resetDelay() {
@@ -852,6 +842,32 @@ class LyricsContainer extends react.Component {
 							dangerouslySetInnerHTML: {
 								__html: Spicetify.SVGIcons["plus-alt"]
 							}
+						})
+					)
+				),
+				react.createElement(
+					Spicetify.ReactComponent.TooltipWrapper,
+					{
+						label: "Add translation tooltip"
+					},
+					react.createElement(
+						"button",
+						{
+							className: "lyrics-config-button",
+							onClick: () => {
+								var bookmarkletCode = "javascript:(function(a,b,c,d,e,f,g){d=document;f='mandarinspot';g=window;if(!!d.getElementById(f+'-tip')){g[f].run();return}g[f]={phonetic:a,inline:b,bookmark:1,api:1};e=d.head||d.body;c=d.createElement('script');c.type='text/javascript';c.src='//'+f+'.com/static/'+f+'.min.js';c.charset='UTF-8';e.appendChild(c)})('pinyin')";
+								bookmarkletCode = bookmarkletCode.replace(/ /g,'');
+							
+								var scriptElement = document.createElement('script');
+								scriptElement.innerHTML = decodeURIComponent(bookmarkletCode);
+								document.body.appendChild(scriptElement);
+							}
+						},
+						react.createElement("svg", {
+							width: 16,
+							height: 16,
+							viewBox: "0 0 16 16",
+							fill: "currentColor",
 						})
 					)
 				)
